@@ -1,0 +1,140 @@
+/* Styles go here */
+
+/* Styles go here */
+body {
+  padding: 0;
+  margin: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+body * {
+  font-family: 'Roboto';
+}
+#questionWindow {
+  background: white;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  position: absolute;
+  width: 95%;
+  padding-bottom: 30px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+#questionWindow #question,
+#questionWindow #questionContainer,
+#questionWindow #titleContainer,
+#questionWindow #moduleName,
+#questionWindow #nextButtonContainer
+{
+  margin: 0 auto;
+  width: 90%;
+}
+
+.edit #titleContainer{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+.edit #question {
+  border: 0 !important;
+}
+
+.edit h1 {
+  padding-top: 0 !important;
+}
+
+#questionContainer div,
+#moduleName div{
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid rgb(240,240,240);
+  margin: 0 !important;
+  width: 100% !important;
+  margin-top: 10px !important;
+}
+
+input {
+  border: 1px solid rgb(240,240,240);
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 10px;
+  padding-left: 15px;
+  font-size: 16px;
+}
+
+#questionContainer div  {
+  padding-left: 10px;
+}
+
+#questionContainer div:hover {
+  transition: all .3s;
+  background: grey;
+}
+#questionWindow h1 {
+  padding-top: 20px;
+  
+}
+#question {
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid rgb(200,200,200);
+}
+
+#question div {
+  margin: 0;
+      margin-left: 10px !important;
+}
+#points {
+  position: absolute;
+  top: 10px;
+right: 50px;
+}
+.inline-block {
+  display: inline-block;
+}
+.buttonDiv {
+  font-size: 13px;
+padding: 10px;
+text-transform: uppercase;
+color: white;
+background: #1E88E5;
+  line-height: 20px;
+  border: 0;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+#buttonContainer {
+}
+
+#moduleName {
+  margin-bottom: 10px !important;
+}
+
+#nextButtonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+#nextButtonContainer {
+  margin-top: 10px !important;
+}
+
+.buttonDiv:hover {
+  transition: all .3s;
+  background: #1976D2;
+}
+
+.disabled {
+  background: rgb(100,100,100);
+  pointer-events: none;
+}
+
+#question input {
+
+}
+input:disabled {
+    background-color: rgb(200,200,200);
+    ;
+}
