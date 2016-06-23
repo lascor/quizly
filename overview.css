@@ -1,0 +1,22 @@
+/* Styles go here */
+
+.main {
+  width:80;
+  background-color:#eee;
+  border:1px solid #ddd;
+  height:500px;
+  padding:5%;
+}
+
+#modules {
+  width:90%;
+  border: 1px solid #aaa;
+}
+
+#addButton {
+  float:right;
+}
+
+h1 {
+  margin:0;
+}
