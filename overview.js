@@ -23,7 +23,7 @@ var modules = {
     }
   },
   "Lernmodul2" : {
-    "frage1": "a"
+    "Frage1": "a"
   }
 }
 
