@@ -1,23 +1,61 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <link rel="stylesheet" href="overview.css">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-  </head>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="quiz.css">
 
-  <body>
-    <div class="main">
-      <h1>Quizly</h1>
-      <div id="addButton"><input type="text" id="newModuleName"> </div>
-      <div style="clear:both;"></div>
-      <div id="modules">
-        
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+</head>
+
+<body>
+  <div id="main">
+    <div id='questionWindow' style=''>
+      <div id='points'>3 Punkte</div>
+      <div id='titleContainer'>
+        <h1>Quizly</h1>
+      </div>
+
+      <div id='question'>
+        <div>Wie heisst die Hauptstadt von Belgien?</div>
+      </div>
+      <div id='questionContainer'>
+        <div>Paris</div>
+        <div>Brüssel</div>
+        <div>Zürich</div>
       </div>
     </div>
-    <script src="overview.js"></script>
-  </body>
+
+    <div id='editWindow' class='edit' style='display: none;'>
+
+      <div id='titleContainer'>
+        <h1>Quizly</h1>
+        <div id='buttonContainer'>
+          <div class='inline-block buttonDiv'>Speichern und beenden</div>
+          <div class='inline-block buttonDiv'>Frage löschen</div>
+          <div class='inline-block buttonDiv'>Neue Frage</div>
+        </div>
+      </div>
+      <div id='moduleName'>
+        <input type='text' placeholder='Modulname' value='' id='question1'>
+      </div>
+      <div id='question'>
+        <input type='text' placeholder='Frage' value='' id='question1' onkeyup='validateQuestion(this)'>
+      </div>
+      <div id='questionContainer' class='editAnswer'>
+        <input type='text' placeholder='Richtige Antwort' value='' id='question1' disabled>
+        <input type='text' placeholder='Antwort 1' value='' id='question2' disabled>
+        <input type='text' placeholder='Antwort 2' value='' id='question3' disabled>
+        <input placeholder='Antwort 3' type='text' value='' id='question4' disabled>
+      </div>
+      <div id='nextButtonContainer'>
+        <div class='inline-block buttonDiv'>Vorherige Frage</div>
+        <div class='inline-block buttonDiv disabled'>Nächste Frage</div>
+      </div>
+    </div>
+  </div>
+  <script src="quiz.js"></script>
+</body>
 
 </html>

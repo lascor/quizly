@@ -8,12 +8,18 @@ var modulesContainer = document.getElementById('modules');
 var modules = {
   "Lernmodul1" : {
     "Frage1" : {
-      "Antwort1": "a",
-      "Antwort2": "b"
+      "FrageText" : "Wie heisst die Hauptstadt von Frankreich?",
+      "correctAnswer": "paris",
+      "altAnswer_1": "Brüssel",
+      "altAnswer_2": "Zürich",
+      "altAnswer_3": "Blubb"
     },
     "Frage2" : {
-      "Antwort1": "a",
-      "Antwort2": "b"
+      "FrageText" : "Wie heisst die Hauptstadt von Belgien?",
+      "correctAnswer": "paris",
+      "altAnswer_1": "Brüssel",
+      "altAnswer_2": "Zürich",
+      "altAnswer_3": "Blubb"
     }
   },
   "Lernmodul2" : {
@@ -81,6 +87,10 @@ function addModule() {
   }
 }
 
+function changeToQuiz() {
+  window.location.href="quizbody.html"
+}
+
 function buttonEvent (action,id) {
   // Debug Stuff
   console.log(action);
@@ -100,7 +110,7 @@ function buttonEvent (action,id) {
         listModules();
       break;
     case "start":
-        alert("start Module");
+        changeToQuiz(id);
       break;
     default:
       "function not supported";
