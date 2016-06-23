@@ -22,6 +22,11 @@ var modules = {
 }
 
 function listModules() {
+    if (modulesContainer.hasChildNodes()) {
+      while (modulesContainer.firstChild) {
+        modulesContainer.removeChild(modulesContainer.firstChild);
+      }
+    }
   for (var index in modules) {
     //List every Module by Name(key value in modules)
     moduleName = document.createTextNode(index);
@@ -32,7 +37,7 @@ function listModules() {
     moduleNameContainer.appendChild(createButton("start",index));
     moduleNameContainer.appendChild(createButton("edit",index));
     moduleNameContainer.appendChild(createButton("delete",index));
-    
+
     modulesContainer.appendChild(moduleNameContainer);
   }
 
@@ -63,8 +68,17 @@ function createEventlistener(buttonAction,action,id) {
   buttonAction.addEventListener("click", function() {buttonEvent(action,id)});
 }
 
-function deleteModule() {
-  
+function deleteModule(id) {
+  delete modules[id];
+}
+
+function addModule() {
+  var newModuleName = document.getElementById('newModuleName');
+  if(modules[newModuleName.value]){
+    alert('Ein Modul mit diesem Namen ist schon Vorhanden');
+  } else {
+    modules[newModuleName.value] = {}; 
+  }
 }
 
 function buttonEvent (action,id) {
@@ -75,13 +89,15 @@ function buttonEvent (action,id) {
   // Witch Action to execute on Call
   switch(action) {
     case "delete":
-        deleteModule();
+        deleteModule(id);
+        listModules();
       break;
     case "edit":
         alert("Action edit " + id);
       break;
     case "add":
-        alert("Action Add Module");
+        addModule();
+        listModules();
       break;
     case "start":
         alert("start Module");
