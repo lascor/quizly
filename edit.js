@@ -11,30 +11,47 @@ function getModuleID() {
 
 function initEditMode(moduleID) {
   setModuleID(moduleID);
-  var editWindow = document.querySelector('#questionWindow.edit');
-  editWindow.style.display = 'block';
-  setModuleName(moduleID);
-  setQuestionName(moduleID);
-  setInputs(moduleID);
+  if (modules[moduleID].length === 0) {
+    createNewQuestion();
+  } else {
+    var editWindow = document.querySelector('#questionWindow.edit');
+    editWindow.style.display = 'block';
+    setModuleName(moduleID);
+    setQuestionName(moduleID);
+    setInputs(moduleID);
+  }
 }
 
-function addNewQuestion() {
-  alert("asd");
-  /*
+function createNewQuestion() {
+  var exitButton = document.getElementById('editSaveButton');
+  exitButton.removeChild(exitButton.firstChild);
+  exitButton.appendChild(document.createTextNode("Abbrechen"));
+  exitButton.onclick = exitEdit;
   var moduleID = getModuleID();
   var newQuestionConstruct = {
-    "FrageText": "",
-    "correctanswer":"",
-    "altAnswer_1":"",
-    "altAnswer_2":"",
-    "altAnswer_3":""
+    "correctAnswer": "",
+    "altAnswer_1": "",
+    "altAnswer_2": "",
+    "altAnswer_3": "",
+    "FrageText": ""
   }
   editIndex = modules[moduleID].length
-  //add empty Question to Object
+    //add empty Question to Object
   modules[moduleID].push(newQuestionConstruct);
   console.log(modules);
   initEditMode(moduleID);
-  */
+  //disableButton("previousQuestionEdit");
+  //disableButton("nextQuestionEdit");
+}
+
+function exitEdit() {
+  var moduleID = getModuleID();
+  deleteQuestion();
+  changeToMain();
+  var exitButton = document.getElementById('editSaveButton');
+  exitButton.removeChild(exitButton.firstChild);
+  exitButton.appendChild(document.createTextNode("Speichern und beenden"));
+  exitButton.onclick = saveAndExit;
 }
 
 function setModuleName(moduleID) {
@@ -50,7 +67,7 @@ function setQuestionName(moduleID) {
 
 function setInputs(moduleID) {
   var inputs = document.getElementsByClassName('answers');
-  alert(editIndex);
+  //alert(editIndex);
   inputs[0].value = modules[moduleID][editIndex]['correctAnswer'];
   inputs[1].value = modules[moduleID][editIndex]['altAnswer_1'];
   inputs[2].value = modules[moduleID][editIndex]['altAnswer_2'];
@@ -82,7 +99,7 @@ function previousQuestionEdit() {
 
 function saveChangedQuestion(moduleID) {
   var inputValues = getAllAnswers();
-  console.log("SaveChengedQuestion: ", moduleID, editIndex, inputValues, modules);
+  //console.log("SaveChengedQuestion: ", moduleID, editIndex, inputValues, modules);
   if (inputValues[0].value != moduleID) {
     renameModule(inputValues[0].value, moduleID)
   }
@@ -94,7 +111,7 @@ function saveChangedQuestion(moduleID) {
 
 }
 
-function saveAndExit(){
+function saveAndExit() {
   saveChangedQuestion(getModuleID());
   alert("Frage gespeichert.");
   changeToMain();

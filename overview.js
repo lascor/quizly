@@ -101,7 +101,7 @@ function addModule() {
   } else if (newModuleName.value === "") {
     alert('Kein Name angegeben');
   } else {
-    modules[newModuleName.value] = {};
+    modules[newModuleName.value] = [];
   }
 }
 
@@ -141,6 +141,7 @@ function buttonEvent(action, id) {
       listModules();
       break;
     case "edit":
+      editIndex = 0;
       initEditMode(id);
       break;
     case "add":

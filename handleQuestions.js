@@ -120,13 +120,13 @@ function getNewAnswer() {
 }
 
 
-function deleteQuestion() {
+function deleteQuestion(index) {
+  var moduleID = getModuleID();
   var inputs = document.getElementsByTagName('input');
   //console.log(inputs);
-  for (i = 0; i < inputs.length; i++) {
-    inputs[i].value = "";
-    // inputs[i].disabled = true
-  }
+  modules[moduleID].splice(editIndex,1);
+  editIndex = 0;
+  initEditMode(moduleID);
 }
 
 function renameModule(oldModule, newModule) {
