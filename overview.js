@@ -123,8 +123,10 @@ function changeToQuiz(moduleID) {
 function changeToMain() {
   var main = document.getElementById('startContainer');
   var quizWindow = document.querySelector('#questionWindow.quiz');
+  var editWindow = document.querySelector('#questionWindow.edit');
   main.style.display = 'block';
   quizWindow.style.display = 'none';
+  editWindow.style.display = 'none';
 }
 
 function buttonEvent(action, id) {

@@ -1,4 +1,3 @@
-
 function validateQuestion(el) {
   if (el.value !== '') {
     enableAnswerFields(el);
@@ -27,14 +26,14 @@ var counter = 0;
 function checkAnswersValue() {
   var inputs = document.getElementsByClassName('answers');
   for (i = 0; i < inputs.length; i++) {
-    console.log(inputs[i].value);
+    //console.log(inputs[i].value);
     if (inputs[i].value !== '') {
       counter++;
     }
   }
 
-  console.log('lol');
-  if (counter == 4) { 
+  //console.log('lol');
+  if (counter == 4) {
     counter = 0;
     enableButton('nextQuestionEdit');
     enableButton('editSaveButton');
@@ -42,18 +41,18 @@ function checkAnswersValue() {
     counter = 0;
     disableButton('nextQuestionEdit');
     disableButton('editSaveButton');
-    
+
   }
 }
 
 function getAllAnswers() {
-   var answersArr = [];
-    var inputs = document.getElementsByClassName('answers');
+  var answersArr = [];
+  var inputs = document.getElementsByClassName('getValue');
   for (i = 0; i < inputs.length; i++) {
-    console.log(inputs[i].value);
-   answersArr.push(inputs[i].value);
-    }
-  
+    //console.log(inputs[i].value);
+    answersArr.push(inputs[i].value);
+  }
+
   return answersArr;
 }
 
@@ -71,12 +70,12 @@ function saveNewQuestion(el) {
   var question = document.getElementById('newQuestion').value;
   var module = 'Lernmodul1';
   var databla = 'newQuestion'
-var answers = getAllAnswers();
-console.log(answers);
+  var answers = getAllAnswers();
+  //console.log(answers);
   if (databla) {
-    setNewQuestion(module, question, answers, true);
+    addNewQuestion(module, question, answers, true);
   } else {
-    setNewQuestion(module, question, answers, false);
+    addNewQuestion(module, question, answers, false);
   }
 }
 
@@ -88,20 +87,20 @@ console.log(answers);
  *  @param answers
  * 
  */
-function setNewQuestion(module, question, answers, newQuestion) {
+function addNewQuestion(module, question, answers, newQuestion) {
   module = 'Lernmodul1'
   if (newQuestion) {
     var saveObj = {
       question: question,
-    correctAnswer: answers[0],
-    altAnswer_1: answers[1],
-    altAnswer_2: answers[2],
-    altAnswer_3: answers[3]
+      correctAnswer: answers[0],
+      altAnswer_1: answers[1],
+      altAnswer_2: answers[2],
+      altAnswer_3: answers[3]
     }
-   modules[module].push(saveObj);
-   console.log(modules[module]);
-   alert('Erfolgreich gespeichert');
-
+    modules[module].push(saveObj);
+    //console.log(modules[module]);
+    alert('Erfolgreich gespeichert');
+    console.log(modules);
   }
 }
 
@@ -120,11 +119,31 @@ function getNewAnswer() {
   return answers;
 }
 
+
 function deleteQuestion() {
   var inputs = document.getElementsByTagName('input');
-  console.log(inputs);
+  //console.log(inputs);
   for (i = 0; i < inputs.length; i++) {
     inputs[i].value = "";
     // inputs[i].disabled = true
   }
 }
+
+function renameModule(oldModule, newModule) {
+  renameObj(oldModule, newModule);
+  setModuleID(newModule);
+}
+
+
+function renameObj(oldName, newName) {
+  // Do nothing if the names are the same
+  if (oldName == newName) {
+    return modules;
+  }
+  // Check for the old property name to avoid a ReferenceError in strict mode.
+  if (modules.hasOwnProperty(oldName)) {
+    modules[newName] = modules[oldName];
+    delete modules[oldName];
+  }
+  return modules;
+};

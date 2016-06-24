@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="cache-control" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-  </head>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+</head>
 
-  <body>
-      <div class="main" id='startContainer'>
-      <h1>Quizly</h1>
-      <div id="addButton"><input type="text" id="newModuleName"> </div>
-      <div style="clear:both;"></div>
-      <div id="modules"></div>
-    </div>
-    
-    
+<body>
+  <div class="main" id='startContainer'>
+    <h1>Quizly</h1>
+    <div id="addButton">
+      <input type="text" id="newModuleName"> </div>
+    <div style="clear:both;"></div>
+    <div id="modules"></div>
+  </div>
+
+
   <div id='questionWindow' class='quiz' style='display: none;'>
     <div id='points'>3 Punkte</div>
     <div id='titleContainer'>
-        <h1>Quizly</h1>
+      <h1>Quizly</h1>
     </div>
-    
+
     <div id='question'>
       <div>Wie heisst die Hauptstadt von Belgien?</div>
     </div>
     <div id='questionContainer'>
       <div>Paris</div>
-       <div>Brüssel</div>
-        <div>Zürich</div>
+      <div>Brüssel</div>
+      <div>Zürich</div>
     </div>
-</div>
+  </div>
 
   <div id='questionWindow' class='edit' style='display: none;'>
-   
+
     <div id='titleContainer'>
-        <h1>Quizly</h1>
-         <div id='buttonContainer'>
-<div id='editSaveButton' class='inline-block buttonDiv disabled' onclick='saveNewQuestion(this)'>Speichern und beenden</div>
-<div onclick='deleteQuestion()'  class='inline-block buttonDiv'>Frage löschen</div>
-<div class='inline-block buttonDiv'>Neue Frage</div>
-    </div>
+      <h1>Quizly</h1>
+      <div id='buttonContainer'>
+        <div id='editSaveButton' class='inline-block buttonDiv disabled' onclick='saveAndExit()'>Speichern und Beenden</div>
+        <div onclick='deleteQuestion()' class='inline-block buttonDiv'>Frage löschen</div>
+        <div onclick='addNewQuestion()' class='inline-block buttonDiv'>Neue Frage</div>
+      </div>
     </div>
     <div id='moduleName'>
-      <input type='text' placeholder='Modulname' value='' id='moduleInput'>
+      <input class='getValue' type='text' placeholder='Modulname' value='' id='moduleInput'>
     </div>
     <div id='question'>
-     <input type='text' placeholder='Frage' value='' id='newQuestion' onkeyup='validateQuestion(this)'>
+      <input class='getValue' type='text' placeholder='Frage' value='' id='newQuestion' onkeyup='validateQuestion(this)'>
     </div>
     <div id='questionContainer' class='editAnswer'>
-      <input onkeyup='checkAnswersValue()' class='answers' type='text' placeholder='Richtige Antwort' value='' id='answer1' disabled>
-       <input onkeyup='checkAnswersValue()'  class='answers' type='text' placeholder='Antwort 1' value='' id='answer2' disabled>
-        <input onkeyup='checkAnswersValue()'  class='answers' type='text' placeholder='Antwort 2'  value='' id='answer3' disabled>
-             <input onkeyup='checkAnswersValue()' class='answers' placeholder='Antwort 3'  type='text' value='' id='answer4' disabled>
+      <input onkeyup='checkAnswersValue()' class='answers getValue' type='text' placeholder='Richtige Antwort' value='' id='answer1' disabled>
+      <input onkeyup='checkAnswersValue()' class='answers getValue' type='text' placeholder='Antwort 1' value='' id='answer2' disabled>
+      <input onkeyup='checkAnswersValue()' class='answers getValue' type='text' placeholder='Antwort 2' value='' id='answer3' disabled>
+      <input onkeyup='checkAnswersValue()' class='answers getValue' placeholder='Antwort 3' type='text' value='' id='answer4' disabled>
     </div>
-             <div id='nextButtonContainer'>
-<div class='inline-block buttonDiv waves-effect'>Vorherige Frage</div>
-<div id='nextQuestionEdit' class='inline-block buttonDiv disabled'>Nächste Frage</div>
+    <div id='nextButtonContainer'>
+      <div onclick='previousQuestionEdit()' id='previousQuestionEdit' class='inline-block buttonDiv waves-effect'>Vorherige Frage</div>
+      <div onclick='nextQuestionEdit()' id='nextQuestionEdit' class='inline-block buttonDiv disabled'>Nächste Frage</div>
     </div>
-</div>
+  </div>
   <script src="overview.js"></script>
-    <script src="edit.js"></script>
-    <script src="quiz.js"></script>
-    <script src="handleQuestions.js"></script>
-  </body>
+  <script src="edit.js"></script>
+  <script src="quiz.js"></script>
+  <script src="handleQuestions.js"></script>
+</body>
 
 </html>
