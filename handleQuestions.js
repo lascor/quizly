@@ -28,14 +28,14 @@ var counter = 0;
 function checkAnswersValue() {
   var inputs = document.getElementsByClassName('answers');
   for (i = 0; i < inputs.length; i++) {
-    console.log(inputs[i].value);
+    //console.log(inputs[i].value);
     if (inputs[i].value !== '') {
       counter++;
     }
   }
 
-  console.log('lol');
-  if (counter == 4) { 
+  //console.log('lol');
+  if (counter == 4) {
     counter = 0;
     enableButton('nextQuestionEdit');
     enableButton('editSaveButton');
@@ -43,18 +43,18 @@ function checkAnswersValue() {
     counter = 0;
     disableButton('nextQuestionEdit');
     disableButton('editSaveButton');
-    
+
   }
 }
 
 function getAllAnswers() {
-   var answersArr = [];
-    var inputs = document.getElementsByClassName('getValue');
+  var answersArr = [];
+  var inputs = document.getElementsByClassName('getValue');
   for (i = 0; i < inputs.length; i++) {
-    console.log(inputs[i].value);
-   answersArr.push(inputs[i].value);
-    }
-  
+    //console.log(inputs[i].value);
+    answersArr.push(inputs[i].value);
+  }
+
   return answersArr;
 }
 
@@ -70,10 +70,10 @@ function disableButton(id) {
 
 function saveNewQuestion(el) {
   var question = document.getElementById('newQuestion').value;
-  var module = 'Mathematik';
+  var module = 'Lernmodul1';
   var databla = 'newQuestion'
-var answers = getAllAnswers();
-console.log(answers);
+  var answers = getAllAnswers();
+  //console.log(answers);
   if (databla) {
     addNewQuestion(module, question, answers, true);
   } else {
@@ -90,19 +90,19 @@ console.log(answers);
  * 
  */
 function addNewQuestion(module, question, answers, newQuestion) {
-//  module = 'Lernmodul1'
+  module = 'Lernmodul1'
   if (newQuestion) {
     var saveObj = {
       question: question,
-    correctAnswer: answers[0],
-    altAnswer_1: answers[1],
-    altAnswer_2: answers[2],
-    altAnswer_3: answers[3]
+      correctAnswer: answers[0],
+      altAnswer_1: answers[1],
+      altAnswer_2: answers[2],
+      altAnswer_3: answers[3]
     }
-   modules[module].push(saveObj);
-   console.log(modules[module]);
-   alert('Erfolgreich gespeichert');
-
+    modules[module].push(saveObj);
+    //console.log(modules[module]);
+    alert('Erfolgreich gespeichert');
+    console.log(modules);
   }
 }
 
@@ -122,17 +122,17 @@ function getNewAnswer() {
 }
 
 
-function deleteQuestion() {
+function deleteQuestion(index) {
+  var moduleID = getModuleID();
   var inputs = document.getElementsByTagName('input');
-  console.log(inputs);
-  for (i = 0; i < inputs.length; i++) {
-    inputs[i].value = "";
-    // inputs[i].disabled = true
-  }
+  //console.log(inputs);
+  modules[moduleID].splice(editIndex,1);
+  editIndex = 0;
+  initEditMode(moduleID);
 }
 
-function renameModule(oldModule ,newModule) {
-    renameObj(oldModule, newModule); 
+function renameModule(oldModule, newModule) {
+  renameObj(oldModule, newModule);
   setModuleID(newModule);
 }
 

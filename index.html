@@ -36,12 +36,12 @@
   <div id='questionWindow' class='edit' style='display: none;'>
    
     <div id='titleContainer'>
-        <h1>Quizly</h1>
-         <div id='buttonContainer'>
-<div id='editSaveButton' class='inline-block buttonDiv disabled' onclick='saveNewQuestion(this)'>Speichern und beenden</div>
-<div onclick='deleteQuestion()'  class='inline-block buttonDiv'>Frage löschen</div>
-<div onclick='addNewQuestion()' class='inline-block buttonDiv'>Neue Frage</div>
-    </div>
+      <h1>Quizly</h1>
+      <div id='buttonContainer'>
+        <div id='editSaveButton' class='inline-block buttonDiv disabled' onclick='saveAndExit()'>Speichern und Beenden</div>
+        <div onclick='deleteQuestion()' id="deleteButton" class='inline-block buttonDiv'>Frage löschen</div>
+        <div onclick='createNewQuestion()' class='inline-block buttonDiv'>Neue Frage</div>
+      </div>
     </div>
     <div id='moduleName'>
       <input class='getValue' type='text' placeholder='Modulname' value='' id='moduleInput'>
@@ -51,13 +51,13 @@
     </div>
     <div id='questionContainer' class='editAnswer'>
       <input onkeyup='checkAnswersValue()' class='answers getValue' type='text' placeholder='Richtige Antwort' value='' id='answer1' disabled>
-       <input onkeyup='checkAnswersValue()'  class='answers getValue' type='text' placeholder='Antwort 1' value='' id='answer2' disabled>
-        <input onkeyup='checkAnswersValue()'  class='answers getValue' type='text' placeholder='Antwort 2'  value='' id='answer3' disabled>
-             <input onkeyup='checkAnswersValue()' class='answers getValue' placeholder='Antwort 3'  type='text' value='' id='answer4' disabled>
+      <input onkeyup='checkAnswersValue()' class='answers getValue' type='text' placeholder='Antwort 1' value='' id='answer2' disabled>
+      <input onkeyup='checkAnswersValue()' class='answers getValue' type='text' placeholder='Antwort 2' value='' id='answer3' disabled>
+      <input onkeyup='checkAnswersValue()' class='answers getValue' placeholder='Antwort 3' type='text' value='' id='answer4' disabled>
     </div>
-             <div id='nextButtonContainer'>
-<div class='inline-block buttonDiv waves-effect'>Vorherige Frage</div>
-<div onclick='nextQuestionEdit()' id='nextQuestionEdit' class='inline-block buttonDiv disabled'>Nächste Frage</div>
+    <div id='nextButtonContainer'>
+      <div onclick='previousQuestionEdit()' id='previousQuestionEdit' class='inline-block buttonDiv waves-effect'>Vorherige Frage</div>
+      <div onclick='nextQuestionEdit()' id='nextQuestionEdit' class='inline-block buttonDiv disabled'>Nächste Frage</div>
     </div>
 </div>
   <script src="overview.js"></script>

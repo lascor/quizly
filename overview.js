@@ -112,7 +112,7 @@ function addModule() {
   } else if (newModuleName.value === "") {
     alert('Kein Name angegeben');
   } else {
-    modules[newModuleName.value] = {};
+    modules[newModuleName.value] = [];
   }
 }
 
@@ -134,8 +134,11 @@ function changeToQuiz(moduleID) {
 function changeToMain() {
   var main = document.getElementById('startContainer');
   var quizWindow = document.querySelector('#questionWindow.quiz');
+  var editWindow = document.querySelector('#questionWindow.edit');
   main.style.display = 'block';
   quizWindow.style.display = 'none';
+  editWindow.style.display = 'none';
+  listModules();
 }
 
 function buttonEvent(action, id) {
@@ -150,6 +153,7 @@ function buttonEvent(action, id) {
       listModules();
       break;
     case "edit":
+      editIndex = 0;
       initEditMode(id);
       break;
     case "add":
