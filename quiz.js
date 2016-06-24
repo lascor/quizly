@@ -24,6 +24,7 @@ function displayQuestion(id, questionIndex) {
     //create Answers but ignore Questiontext of object
     if (index2 != "FrageText") {
       var answerDiv = document.createElement('div');
+      answerDiv.className = 'answerDiv'
       var answerText = document.createTextNode(modules[id][questionIndex][index2]);
       answerDiv.appendChild(answerText);
       answerDiv.id = modules[id][questionIndex][index2];
@@ -40,6 +41,8 @@ function displayQuestion(id, questionIndex) {
   mainContainer.appendChild(questionContainer);
   mainContainer.appendChild(answerContainer);
 }
+
+
 
 function makeTitle() {
     // make Title
@@ -82,18 +85,32 @@ function chekAnswer(value, object) {
   var falseBox = document.getElementById(object[value]);
   if (value === "correctAnswer") {
     //mark correct
-    correctBox.style.backgroundColor = "green";
+    correctBox.style.backgroundColor = "#00CD00";
+      correctBox.style.color = 'white';
     points++;
     updatePoints();
+    disableClickOnAnswers();
     setTimeout(nextQuestion, 3000);
 
   } else {
     //Mark false and mark the correct answer
     falseBox.style.backgroundColor = "red";
-    correctBox.style.backgroundColor = "#00c853";
+    falseBox.style.color = 'white';
+    correctBox.style.backgroundColor = "#00CD00";
+    correctBox.style.color = 'white';
+     disableClickOnAnswers();
     setTimeout(nextQuestion, 3000);
   }
   console.log(value);
+}
+
+function disableClickOnAnswers() {
+  var answers = document.getElementsByClassName('answerDiv');
+  console.log("oiewinfewnofewo" + answers);
+  for(var i in answers) {
+    console.log(answers[i]);
+    answers[i].className = "answerDiv noPointer";
+  }
 }
 
 function displayGameOver(moduleID) {
@@ -103,9 +120,14 @@ function displayGameOver(moduleID) {
       mainContainer.removeChild(mainContainer.firstChild);
     }
   }
-  var gameOverText = document.createTextNode("Sie haben das Lernmodul abgeschlossen.\nSie haben " + points.toString() + " von " + modules[moduleID].length + " Punkten Erreicht!"); 
+  var div = document.createElement('div');
+  div.innerHTML ="Sie haben das Lernmodul abgeschlossen.\nSie haben " + points.toString() + " von " + modules[moduleID].length + " Punkten Erreicht!";
+  div.style = 'padding-left: 15px;'
+  
+//  var gameOverText = document.createTextNode("Sie haben das Lernmodul abgeschlossen.\nSie haben " + points.toString() + " von " + modules[moduleID].length + " Punkten Erreicht!"); 
   mainContainer.appendChild(makeTitle());
-  mainContainer.appendChild(gameOverText);
+ // div.appendChild(gameOverText);
+  mainContainer.appendChild(div);
   mainContainer.appendChild(createButton("back","1"));
   
 }

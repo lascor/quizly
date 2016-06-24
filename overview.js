@@ -7,14 +7,14 @@ var modulesContainer = document.getElementById('modules');
 var modules = {
   'Lernmodul1': [{
     "FrageText": "Wie heisst die Hauptstadt von Frankreich?",
-    "correctAnswer": "L1 1",
+    "correctAnswer": 'Paris',
     "altAnswer_1": "Brüssel",
     "altAnswer_2": "Zürich",
     "altAnswer_3": "Blubb"
   }, {
     "FrageText": "Wie heisst die Hauptstadt von Belgien?",
-    "correctAnswer": "L1 2",
-    "altAnswer_1": "Brüssel",
+    "correctAnswer": "Brüssel",
+    "altAnswer_1": "Paris",
     "altAnswer_2": "Zürich",
     "altAnswer_3": "Blubb"
   }],
@@ -47,7 +47,9 @@ function listModules() {
   }
   for (var index in modules) {
     //List every Module by Name(key value in modules)
-    moduleName = document.createTextNode(index);
+    moduleName = document.createElement('div');
+    moduleName.style ='width: 95px;    text-overflow: ellipsis; overflow: hidden; display: inline-block;'
+    moduleName.innerHTML = index;
     var moduleNameContainer = document.createElement('DIV');
     moduleNameContainer.appendChild(moduleName);
     moduleNameContainer.className = 'moduleRow'
@@ -73,7 +75,16 @@ function createButton(text, id) {
   //create Button Elementand add text
   var button = document.createElement('button');
   var buttonText = document.createTextNode(text);
-  button.className = 'buttonDiv';
+  if(text == 'start') {
+  if(Object.keys(modules[id]).length === 0) {
+    button.className = 'buttonDiv disabled';
+  } else {
+      button.className = 'buttonDiv';
+  } 
+  } else {
+    button.className = 'buttonDiv';
+  }
+  
   button.appendChild(buttonText);
   //Add an ID just in Case
   button.id = text + id;
@@ -101,7 +112,7 @@ function addModule() {
   } else if (newModuleName.value === "") {
     alert('Kein Name angegeben');
   } else {
-    modules[newModuleName.value] = [];
+    modules[newModuleName.value] = {};
   }
 }
 
@@ -123,10 +134,8 @@ function changeToQuiz(moduleID) {
 function changeToMain() {
   var main = document.getElementById('startContainer');
   var quizWindow = document.querySelector('#questionWindow.quiz');
-  var editWindow = document.querySelector('#questionWindow.edit');
   main.style.display = 'block';
   quizWindow.style.display = 'none';
-  editWindow.style.display = 'none';
 }
 
 function buttonEvent(action, id) {
@@ -141,7 +150,6 @@ function buttonEvent(action, id) {
       listModules();
       break;
     case "edit":
-      editIndex = 0;
       initEditMode(id);
       break;
     case "add":
@@ -149,7 +157,11 @@ function buttonEvent(action, id) {
       listModules();
       break;
     case "start":
+      if(Object.keys(modules[id]).length === 0) {
+        initEditMode();
+      } else {
       changeToQuiz(id);
+      }
       break;
     case "back":
       changeToMain();
